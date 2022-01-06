@@ -1,3 +1,7 @@
+<?php
+
+use App\Controllers\Auth;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -232,7 +236,7 @@
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="<?= site_url('auth/logout'); ?>" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>

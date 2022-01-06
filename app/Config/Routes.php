@@ -38,13 +38,16 @@ $routes->get('create-db', function () {
     }
 });
 
+$routes->get('login', 'Auth::login');
+
 $routes->addRedirect('/', 'home');
 
 $routes->get('gawe', 'Gawe::index');
 $routes->get('gawe/add', 'Gawe::create');
 $routes->post('gawe', 'Gawe::store');
-$routes->get('gawe/edit/(:any)', 'Gawe::edit/$1');
+$routes->get('gawe/edit/(:segment)', 'Gawe::edit/$1');
 $routes->put('gawe/(:any)', 'Gawe::update/$1');
+$routes->delete('gawe/(:segment)', 'Gawe::destroy/$1');
 
 /*
  * --------------------------------------------------------------------
