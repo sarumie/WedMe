@@ -2,15 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Models\GroupModel;
 use CodeIgniter\RESTful\ResourcePresenter;
+// use App\Models\GroupModel;
+
 
 class Groups extends ResourcePresenter
 {
-    public function __construct()
-    {
-        $this->group = new GroupModel();
-    }
+    // public function __construct()
+    // {
+    //     $this->group = new GroupModel();
+    // }
+
+    protected $modelName = 'App\Models\GroupModel';
 
     /**
      * Present a view of resource objects
@@ -19,7 +22,7 @@ class Groups extends ResourcePresenter
      */
     public function index()
     {
-        $data['groups'] = $this->group->findAll();
+        $data['groups'] = $this->model->findAll();
         return view('groups/index', $data);
     }
 
@@ -53,9 +56,10 @@ class Groups extends ResourcePresenter
      */
     public function create()
     {
-        //
+        $data = $this->request->getPost();
+        $this->model->insert($data);
+        return redirect()->to(site_url('groups'))->with('success', 'Data berhasil disimpan');
     }
-
     /**
      * Present a view to edit the properties of a specific resource object
      *
