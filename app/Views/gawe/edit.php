@@ -1,7 +1,7 @@
 <?= $this->extend('layout/default'); ?>
 
 <?= $this->section('title'); ?>
-<title>Create Gawe</title>
+<title>Edit Gawe</title>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
