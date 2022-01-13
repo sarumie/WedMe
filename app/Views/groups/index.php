@@ -35,7 +35,12 @@
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Data grup / Acara</h4>
+        <h4>Data grup kontak</h4>
+        <div class="card-header-action">
+          <a href="" class="btn btn-danger">
+            <i class="fa fa-trash"></i> Trash
+          </a>
+        </div>
       </div>
       <div class="card-body table-responsive">
         <table class="table table-bordered table-md">
@@ -53,9 +58,8 @@
 
               <td class="text-center" style="width: 15%;">
                 <a href="<?= site_url('groups/edit/' . $value->id_group); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                <form action="<?= site_url('groups/' . $value->id_group); ?>" method="post" onsubmit="return confirm('Yakin hapus data ?')" class="d-inline">
+                <form action="<?= site_url('groups/delete/' . $value->id_group); ?>" method="post" onsubmit="return confirm('Yakin hapus grup ?')" class="d-inline">
                   <?= csrf_field(); ?>
-                  <input type="hidden" name="_method" value="DELETE">
                   <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                 </form>
               </td>
