@@ -14,6 +14,8 @@ class Groups extends ResourcePresenter
     // }
 
     protected $modelName = 'App\Models\GroupModel';
+    // protected $helpers = ['custom'];
+
 
     /**
      * Present a view of resource objects
