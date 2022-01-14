@@ -7,10 +7,10 @@
 <?= $this->section('content'); ?>
 <section class="section">
   <div class="section-header">
-    <h1>Grup</h1>
-    <div class="section-header-button">
-      <a href="<?= site_url('groups/new'); ?>" class="btn btn-primary">Add New</a>
+    <div class="section-header-back">
+      <a href="<?= site_url('groups'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
+    <h1>Grup - Trash</h1>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>
@@ -35,11 +35,15 @@
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Data grup kontak</h4>
+        <h4>Data grup kontak terhapus sementara</h4>
         <div class="card-header-action">
-          <a href="<?= site_url('groups/trash'); ?>" class="btn btn-danger">
-            <i class="fa fa-trash"></i> Trash
+          <a href="<?= site_url('groups/restore'); ?>" onclick="return confirm('Yakin ingin memulihkan semua grup?')" class="btn btn-warning">
+            <i class="fa fa-trash-restore"></i> Restore All
           </a>
+          <form action="<?= site_url('groups/delete2') ?>" method="post" onsubmit="return confirm('Yakin hapus semua grup ?')" class="d-inline">
+            <?= csrf_field(); ?>
+            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete All</button>
+          </form>
         </div>
       </div>
       <div class="card-body table-responsive">
@@ -57,10 +61,10 @@
               <td><?= $value->info_group ?></td>
 
               <td class="text-center" style="width: 15%;">
-                <a href="<?= site_url('groups/edit/' . $value->id_group); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                <form action="<?= site_url('groups/delete/' . $value->id_group); ?>" method="post" onsubmit="return confirm('Yakin hapus grup ?')" class="d-inline">
+                <a href="<?= site_url('groups/restore/' . $value->id_group); ?>" class="btn btn-warning btn-sm">Restore</a>
+                <form action="<?= site_url('groups/delete2/' . $value->id_group); ?>" method="post" onsubmit="return confirm('Yakin hapus grup ?')" class="d-inline">
                   <?= csrf_field(); ?>
-                  <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                  <button class="btn btn-danger btn-sm">Del Perma..</button>
                 </form>
               </td>
             </tr>

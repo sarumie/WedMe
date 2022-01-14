@@ -121,4 +121,61 @@ class Groups extends ResourcePresenter
         $this->model->delete($id);
         return redirect()->to(site_url('groups'))->with('success', 'Grup berhasil dihapus');
     }
+    public function trash()
+    {
+        $data['groups'] = $this->model->onlyDeleted()->findAll();
+        return view('groups/trash', $data);
+    }
+
+    public function restore($id = null)
+    {
+        $this->db = \Config\Database::connect();
+
+        if ($id != null) {
+            $this->db->table('groups')
+                ->set('deleted_at', null, true)
+                ->where(['id_group' => $id])
+                ->update();
+        } else {
+            $this->db->table('groups')
+                ->set('deleted_at', null, true)
+                ->where('deleted_at IS NOT NULL', null, true)
+                ->update();
+        }
+        if ($this->db->affectedRows() > 0) {
+            return redirect()->to(site_url('groups'))->with('success', 'Grup berhasil direstore');
+        } else {
+            return redirect()->to(site_url('groups'))->with('error', 'Tidak ada grup yang di pulihkan');
+        }
+    }
+
+    public function delete2($id = null)
+    {
+        if ($id != null) {
+            $this->model->delete($id, true);
+        } else {
+            $this->model->purgeDeleted();
+        }
+
+        $affectedRow = $this->model->affectedRows();
+        if ($affectedRow > 0) {
+            if ($affectedRow > 1) {
+                return redirect()->to(site_url('groups/trash'))->with('success', 'Semua grup telah di hapus permanen');
+            } else {
+                return redirect()->to(site_url('groups/trash'))->with('success', 'Grup telah di hapus permanen');
+            }
+        } else {
+            return redirect()->to(site_url('groups/trash'))->with('error', 'Tidak ada grup yang terhapus');
+        }
+
+        // if ($this->db->affectedRows() > 0) {
+        //     if ($this->db->affectedRows() > 1) {
+        //         return redirect()->to(site_url('groups/trash'))->with('success', 'Semua grup telah di hapus permanen');
+        //     } else {
+        //         return redirect()->to(site_url('groups/trash'))->with('success', 'Grup telah di hapus permanen');
+        //     }
+        // } else {
+        //     return redirect()->to(site_url('groups/trash'))->with('error', 'Tidak ada grup yang terhapus');
+        // }
+    }
 }
