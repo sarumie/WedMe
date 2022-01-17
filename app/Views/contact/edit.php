@@ -19,15 +19,41 @@
         <h4>Edit group / Acara</h4>
       </div>
       <div class="card-body col-md-6">
-        <form action="<?= site_url('contacts/update/') ?>" method="post" autocomplete="off">
+        <form action="<?= site_url('contacts/' . $contact->id_contact) ?>" method="post" autocomplete="off">
           <?= csrf_field(); ?>
+          <input type="hidden" name="_method" value="PATCH">
           <div class="form-group">
-            <label for="nama">Nama Acara</label>
-            <input type="text" name="name_group" value="" class="form-control" required>
+            <label>Group <b style="color: red;">*</b></label>
+            <select name="id_group" class="form-control" required>
+              <option value="" hidden></option>
+              <?php foreach ($groups as $key => $value) : ?>
+                <option value="<?= $value->id_group; ?>" <?= $contact->id_group == $value->id_group ? 'selected' : null; ?>><?= $value->name_group; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
-            <label for="nama">Info</label>
-            <textarea name="info_group" class="form-control" required></textarea>
+            <label>Nama Kontak <b style="color: red;">*</b></label>
+            <input type="text" name="name_contact" value="<?= $contact->name_contact; ?>" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Nama Alias</label>
+            <input type="text" name="name_alias" value="<?= $contact->name_alias; ?>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Nomor Telepon</label>
+            <input type="number" name="phone" value="<?= $contact->phone; ?>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" value="<?= $contact->email; ?>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Alamat</label>
+            <textarea name="address" class="form-control"><?= $contact->address; ?></textarea>
+          </div>
+          <div class="form-group">
+            <label>Info Kontak</label>
+            <textarea name="info_contact" class="form-control"><?= $contact->info_contact; ?></textarea>
           </div>
           <div>
             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>

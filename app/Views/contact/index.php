@@ -56,6 +56,27 @@
             <th>Action</th>
           </tr>
           <!-- Looping -->
+          <?php foreach ($contacts as $key => $value) : ?>
+            <tr>
+              <td><?= $key + 1 ?></td>
+              <td><?= $value->name_contact ?></td>
+              <td><?= $value->name_alias ?></td>
+              <td><?= $value->phone ?></td>
+              <td><?= $value->email ?></td>
+              <td><?= $value->address ?></td>
+              <td><?= $value->info_contact ?></td>
+              <td><?= $value->name_group ?></td>
+
+              <td class="text-center" style="width: 15%;">
+                <a href="<?= site_url('contacts/' . $value->id_contact . '/edit'); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                <form action="<?= site_url('contacts/' . $value->id_contact); ?>" method="post" onsubmit="return confirm('Yakin hapus Kontak ?')" class="d-inline">
+                  <?= csrf_field(); ?>
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                </form>
+              </td>
+            </tr>
+          <?php endforeach; ?>
         </table>
       </div>
     </div>
