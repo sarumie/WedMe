@@ -58,7 +58,7 @@ class Contacts extends ResourceController
     {
         $data = $this->request->getPost();
         $this->contact->insert($data);
-        return redirect()->to(site_url('contact'))->with('success', 'Kontak berhasil disimpan');
+        return redirect()->to(site_url('contacts'))->with('success', 'Kontak berhasil disimpan');
     }
 
     /**
