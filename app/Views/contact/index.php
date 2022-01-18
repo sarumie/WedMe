@@ -36,11 +36,6 @@
     <div class="card">
       <div class="card-header">
         <h4>Data Kontak</h4>
-        <div class="card-header-action">
-          <a href="<?= site_url('contacts/trash'); ?>" class="btn btn-danger">
-            <i class="fa fa-trash"></i> Trash
-          </a>
-        </div>
       </div>
       <div class="card-body table-responsive">
         <table class="table table-bordered table-md">
@@ -55,7 +50,6 @@
             <th>Grup</th>
             <th>Action</th>
           </tr>
-          <!-- Looping -->
           <?php foreach ($contacts as $key => $value) : ?>
             <tr>
               <td><?= $key + 1 ?></td>

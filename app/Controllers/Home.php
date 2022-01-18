@@ -6,7 +6,10 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('home');
+        $data['gawe'] = $this->db->table('gawe')->countAll();
+        $data['groups'] = $this->db->table('groups')->countAll();
+        $data['contact'] = $this->db->table('contacts')->countAll();
+        return view('home', $data);
     }
 
     // public function generate()

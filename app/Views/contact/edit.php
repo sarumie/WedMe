@@ -1,7 +1,7 @@
 <?= $this->extend('layout/default'); ?>
 
 <?= $this->section('title'); ?>
-<title>Edit group</title>
+<title>Edit contact</title>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -10,20 +10,20 @@
     <div class="section-header-back">
       <a href="<?= site_url('contacts'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
-    <h1>Update group</h1>
+    <h1>Update kontak</h1>
   </div>
 
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Edit group / Acara</h4>
+        <h4>Edit kontak</h4>
       </div>
       <div class="card-body col-md-6">
         <form action="<?= site_url('contacts/' . $contact->id_contact) ?>" method="post" autocomplete="off">
           <?= csrf_field(); ?>
           <input type="hidden" name="_method" value="PATCH">
           <div class="form-group">
-            <label>Group <b style="color: red;">*</b></label>
+            <label>Grup <b style="color: red;">*</b></label>
             <select name="id_group" class="form-control" required>
               <option value="" hidden></option>
               <?php foreach ($groups as $key => $value) : ?>
