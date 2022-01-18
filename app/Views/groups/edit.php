@@ -16,13 +16,13 @@
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Edit group / Acara</h4>
+        <h4>Edit grup</h4>
       </div>
       <div class="card-body col-md-6">
         <form action="<?= site_url('groups/update/' . $group->id_group); ?>" method="post" autocomplete="off">
           <?= csrf_field(); ?>
           <div class="form-group">
-            <label for="nama">Nama Acara</label>
+            <label for="nama">Nama Grup</label>
             <input type="text" name="name_group" value="<?= $group->name_group; ?>" class="form-control" required>
           </div>
           <div class="form-group">
