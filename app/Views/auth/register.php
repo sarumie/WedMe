@@ -76,9 +76,6 @@
 
               </div>
             </div>
-            <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="<?= site_url('login'); ?>">Create One</a>
-            </div>
             <div class="simple-footer">
               Copyright &copy; WedMe 2022
             </div>
