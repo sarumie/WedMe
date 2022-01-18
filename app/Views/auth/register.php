@@ -69,12 +69,14 @@
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
+                      Register
                     </button>
                   </div>
                 </form>
-
               </div>
+            </div>
+            <div class="mt-5 text-muted text-center">
+              Have an account? <a href="<?= site_url('login'); ?>">Back to login</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; WedMe 2022
