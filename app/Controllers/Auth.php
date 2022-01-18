@@ -2,11 +2,33 @@
 
 namespace App\Controllers;
 
+// use CodeIgniter\Database\Query;
+
 class Auth extends BaseController
 {
   public function index()
   {
     return redirect()->to(site_url('login'));
+  }
+
+  public function register()
+  {
+    // Cek jika user ada
+    if (session('id_user')) {
+      return redirect()->to(site_url('home'));
+    }
+    return view('auth/register');
+  }
+
+  public function registerProcess()
+  {
+    $data = [
+      'name_user' => $this->request->getVar('name'),
+      'email_user' => $this->request->getVar('email'),
+      'password_user' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT)
+    ];
+    $this->db->table('users')->insert($data);
+    return redirect()->to(site_url('login'))->with('success', 'Berhasil mendaftarkan akun');
   }
 
   public function login()

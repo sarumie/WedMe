@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login &mdash; WedMe</title>
+  <title>Register &mdash; WedMe</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?= base_url(); ?>/template/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -26,7 +26,7 @@
 
             <div class="card card-primary">
               <div class="card-header">
-                <h4>Login</h4>
+                <h4>Register</h4>
               </div>
 
               <?php if (session()->getFlashdata('error')) : ?>
@@ -39,22 +39,19 @@
                 </div>
               <?php endif; ?>
 
-              <?php if (session()->getFlashdata('success')) : ?>
-                <div class="alert alert-success alert-dismissable show fade">
-                  <div class="alert-body">
-                    <button class="close" data-dissmiss="alert">X</button>
-                    <b>Success !</b>
-                    <?= session()->getFlashdata('success') ?>
-                  </div>
-                </div>
-              <?php endif; ?>
-
               <div class="card-body">
-                <form method="POST" action="<?= site_url('auth/loginProcess'); ?>" class="needs-validation" novalidate="">
+                <form method="POST" action="<?= site_url('auth/registerProcess'); ?>" class="needs-validation" novalidate>
                   <?= csrf_field(); ?>
                   <div class="form-group">
+                    <label for="name">Fullname</label>
+                    <input id="name" type="text" class="form-control" name="name" tabindex="1" required autofocus>
+                    <div class="invalid-feedback">
+                      Please fill in your fullname
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required>
                     <div class="invalid-feedback">
                       Please fill in your email
                     </div>
@@ -63,24 +60,12 @@
                   <div class="form-group">
                     <div class="d-block">
                       <label for="password" class="control-label">Password</label>
-                      <!-- <div class="float-right">
-                        <a href="auth-forgot-password.html" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div> -->
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
                       Please fill in your password
                     </div>
                   </div>
-
-                  <!-- <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
-                    </div>
-                  </div> -->
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
@@ -92,7 +77,7 @@
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="<?= site_url('register'); ?>">Create One</a>
+              Don't have an account? <a href="<?= site_url('login'); ?>">Create One</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; WedMe 2022

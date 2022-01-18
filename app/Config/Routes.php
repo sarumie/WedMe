@@ -39,6 +39,7 @@ $routes->get('create-db', function () {
 });
 
 $routes->get('login', 'Auth::login');
+$routes->get('register', 'Auth::register');
 
 $routes->addRedirect('/', 'home');
 
