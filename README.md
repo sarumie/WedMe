@@ -1,6 +1,6 @@
 # WedMe
 
-Website yang mengatur data kontak
+Simple project mengatur data kontak dengan Codeigniter 4
 
 ### List User :
 
